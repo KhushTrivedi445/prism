@@ -1,0 +1,3 @@
+# PRISM Generated Twitter/X Post
+
+Cut cross‑channel authoring time by 75% with PRISM—an AI‑powered system that turns source documents into multiple formats while guaranteeing 100 % factual provenance through a centralized Fact Graph and an automated Guardrail Consistency Critic. #AI #ContentCreation #FactBased

@@ -1,6 +1,7 @@
 from prism.state import PRISMState
 from prism.schemas import GuardrailResult
 from prism.config import get_llm, MAX_REVISIONS
+from prism.utils import invoke_structured_llm
 
 def guardrail_node(state: PRISMState) -> dict:
     fact_graph = state.get("fact_graph")
@@ -19,13 +20,6 @@ def guardrail_node(state: PRISMState) -> dict:
         generated_outputs["presentation"] = state["presentation_output"]
 
     llm = get_llm()
-    try:
-        guardrail_llm = llm.with_structured_output(
-            GuardrailResult,
-            method="json_schema"
-        )
-    except Exception:
-        guardrail_llm = llm.with_structured_output(GuardrailResult)
 
     prompt = f"""
 You are the Guardrail / Consistency Critic Agent for PRISM.
@@ -103,10 +97,10 @@ STRICT VALIDATION RULES
     Only mark FAIL when you can identify a specific unsupported
     factual claim.
 
-Return ONLY the structured GuardrailResult.
+Return ONLY the structured GuardrailResult as valid JSON.
 """
 
-    result = guardrail_llm.invoke(prompt)
+    result = invoke_structured_llm(llm, GuardrailResult, prompt)
 
     if isinstance(result, dict):
         res_dict = result

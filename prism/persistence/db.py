@@ -1,9 +1,21 @@
 import sqlite3
 import json
 import uuid
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional
 from prism.config import DB_PATH
+
+def normalize_utc_timestamp(ts: Optional[str]) -> str:
+    """Ensure stored timestamp is returned in unambiguous ISO-8601 UTC format with +00:00 offset."""
+    if not ts:
+        return datetime.now(timezone.utc).isoformat()
+    ts = ts.strip()
+    if ts.endswith("Z"):
+        return f"{ts[:-1]}+00:00"
+    if "+" in ts or (len(ts) > 19 and ("-" in ts[19:])):
+        return ts
+    # Naive legacy UTC string from datetime.utcnow().isoformat()
+    return f"{ts}+00:00"
 
 def init_db(db_path: str = DB_PATH):
     conn = sqlite3.connect(db_path)
@@ -33,7 +45,7 @@ def init_db(db_path: str = DB_PATH):
 def save_run(state: Dict[str, Any], db_path: str = DB_PATH) -> str:
     init_db(db_path)
     run_id = state.get("run_id") or str(uuid.uuid4())[:8]
-    created_at = datetime.utcnow().isoformat()
+    created_at = datetime.now(timezone.utc).isoformat()
 
     # Collect generated outputs dictionary
     gen_outputs = {}
@@ -90,7 +102,7 @@ def get_run(run_id: str, db_path: str = DB_PATH) -> Optional[Dict[str, Any]]:
 
     return {
         "run_id": row[0],
-        "created_at": row[1],
+        "created_at": normalize_utc_timestamp(row[1]),
         "input_type": row[2],
         "source_text": row[3],
         "normalized_text": row[4],
@@ -121,7 +133,7 @@ def list_runs(db_path: str = DB_PATH, limit: int = 50) -> List[Dict[str, Any]]:
     for r in rows:
         runs.append({
             "run_id": r[0],
-            "created_at": r[1],
+            "created_at": normalize_utc_timestamp(r[1]),
             "input_type": r[2],
             "tone": r[3],
             "audience": r[4],

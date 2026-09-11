@@ -1,0 +1,3 @@
+# PRISM Generated LinkedIn Post
+
+PRISM is an AI‑powered content generation system that turns a single source document into multiple formats while ensuring 100 % factual provenance verification. It extracts entities, claims with source spans, metrics, dates, and recommendations as the single source of truth, and uses a centralized graph to maintain consistency across all outputs. An automated Guardrail Consistency Critic flags unsupported claims and triggers bounded revisions. Recent benchmarks show PRISM cuts cross‑channel authoring time by 75 %. Elevate your content strategy with PRISM—speed and consistency in one platform. 🚀📊 #AI #ContentCreation #Productivity #DataIntegrity

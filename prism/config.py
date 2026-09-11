@@ -5,13 +5,13 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Default API Keys from original notebook environment
-DEFAULT_GROQ_API_KEY = os.getenv("GROQ_API_KEY", "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")
+DEFAULT_GROQ_API_KEY = os.getenv("GROQ_API_KEY", "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")
 DEFAULT_HF_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN", "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")
 
 os.environ["GROQ_API_KEY"] = DEFAULT_GROQ_API_KEY
 os.environ["HUGGINGFACEHUB_API_TOKEN"] = DEFAULT_HF_TOKEN
 
-DEFAULT_MODEL = os.getenv("PRISM_GROQ_MODEL", "openai/gpt-oss-20b")
+DEFAULT_MODEL = os.getenv("PRISM_GROQ_MODEL", "openai/gpt-oss-120b")
 EMBEDDING_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 MAX_REVISIONS = int(os.getenv("PRISM_MAX_REVISIONS", "2"))
 

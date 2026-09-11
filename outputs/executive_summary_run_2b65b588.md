@@ -1,0 +1,3 @@
+# Executive Summary
+
+PRISM is an AI‑powered content generation platform that converts a single source document into a suite of formats—such as articles, briefs, and social posts—while preserving factual integrity. At its core, PRISM relies on a centralized repository that extracts entities, claims (with source spans), metrics, dates, and recommendations, establishing a single source of truth for all generated outputs. An automated Guardrail Consistency Critic monitors this repository, flagging unsupported claims and initiating bounded revisions to maintain compliance. Recent benchmarks demonstrate that PRISM cuts cross‑channel authoring time by 75 % and delivers 100 % factual provenance verification, underscoring its efficiency and reliability.

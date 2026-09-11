@@ -99,15 +99,8 @@ Do not explain what you changed.
     updates = {"revision_count": new_revision_count}
 
     if failed_output == "presentation":
-        try:
-            presentation_llm = llm.with_structured_output(
-                Presentation,
-                method="json_schema"
-            )
-        except Exception:
-            presentation_llm = llm.with_structured_output(Presentation)
-
-        revised_presentation = presentation_llm.invoke(prompt)
+        from prism.utils import invoke_structured_llm
+        revised_presentation = invoke_structured_llm(llm, Presentation, prompt)
         if isinstance(revised_presentation, dict):
             pres_dict = revised_presentation
         else:

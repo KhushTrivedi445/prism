@@ -1,6 +1,7 @@
 from prism.state import PRISMState
 from prism.schemas import FactGraph
 from prism.config import get_llm
+from prism.utils import invoke_structured_llm
 
 def fact_graph_node(state: PRISMState) -> dict:
     text = state.get("normalized_text")
@@ -8,10 +9,6 @@ def fact_graph_node(state: PRISMState) -> dict:
         raise ValueError("Normalized text is empty.")
 
     llm = get_llm()
-    try:
-        fact_graph_llm = llm.with_structured_output(FactGraph, method="json_schema")
-    except Exception:
-        fact_graph_llm = llm.with_structured_output(FactGraph)
 
     prompt = f"""
 You are the Fact Graph Extraction Agent for PRISM.
@@ -82,10 +79,10 @@ SOURCE DOCUMENT
 
 {text}
 
-Return ONLY the structured FactGraph.
+Return ONLY the structured FactGraph as valid JSON.
 """
 
-    fact_graph = fact_graph_llm.invoke(prompt)
+    fact_graph = invoke_structured_llm(llm, FactGraph, prompt)
 
     if isinstance(fact_graph, dict):
         fg_dict = fact_graph

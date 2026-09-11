@@ -1,0 +1,3 @@
+# Executive Summary
+
+CardiaGuard, a cardiovascular therapeutic, completed a Phase III trial enrolling 6,400 patients across 48 sites in North America and Western Europe over 24 months. The study demonstrated a 42 % relative reduction in major cardiovascular events, with primary endpoints achieved at p < 0.001. Adverse event rates were 3.1 % for CardiaGuard versus 2.9 % for placebo, indicating comparable safety. A clinical advisory board has recommended a priority FDA filing by Q1 2027. These results support CardiaGuard’s efficacy and favorable safety profile, positioning it as a promising candidate for regulatory review.

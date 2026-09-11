@@ -4,11 +4,11 @@ from pptx.util import Pt
 from prism.state import PRISMState
 from prism.schemas import Presentation
 from prism.config import get_llm, OUTPUTS_DIR
+from prism.utils import invoke_structured_llm, invoke_text_llm
 
 def linkedin_node(state: PRISMState) -> dict:
     fact_graph = state.get("fact_graph")
     tone = state.get("tone", "professional")
-    llm = get_llm()
 
     prompt = f"""
     You are the LinkedIn Content Specialist Agent for PRISM.
@@ -33,14 +33,13 @@ def linkedin_node(state: PRISMState) -> dict:
     {fact_graph}
     """
 
-    response = llm.invoke(prompt)
-    return {"linkedin_output": response.content}
+    content = invoke_text_llm(prompt)
+    return {"linkedin_output": content}
 
 
 def twitter_node(state: PRISMState) -> dict:
     fact_graph = state.get("fact_graph")
     tone = state.get("tone", "engaging")
-    llm = get_llm()
 
     prompt = f"""
     You are the Twitter/X Content Specialist Agent for PRISM.
@@ -66,14 +65,13 @@ def twitter_node(state: PRISMState) -> dict:
     {fact_graph}
     """
 
-    response = llm.invoke(prompt)
-    return {"twitter_output": response.content}
+    content = invoke_text_llm(prompt)
+    return {"twitter_output": content}
 
 
 def summary_node(state: PRISMState) -> dict:
     fact_graph = state.get("fact_graph")
     tone = state.get("tone", "executive")
-    llm = get_llm()
 
     prompt = f"""
     You are the Executive Summary Specialist Agent for PRISM.
@@ -103,14 +101,13 @@ def summary_node(state: PRISMState) -> dict:
     {fact_graph}
     """
 
-    response = llm.invoke(prompt)
-    return {"summary_output": response.content}
+    content = invoke_text_llm(prompt)
+    return {"summary_output": content}
 
 
 def advisory_node(state: PRISMState) -> dict:
     fact_graph = state.get("fact_graph")
     tone = state.get("tone", "formal")
-    llm = get_llm()
 
     prompt = f"""
     You are the Advisory Specialist Agent for PRISM.
@@ -138,22 +135,14 @@ def advisory_node(state: PRISMState) -> dict:
     {fact_graph}
     """
 
-    response = llm.invoke(prompt)
-    return {"advisory_output": response.content}
+    content = invoke_text_llm(prompt)
+    return {"advisory_output": content}
 
 
 def presentation_node(state: PRISMState) -> dict:
     fact_graph = state.get("fact_graph")
     tone = state.get("tone", "professional")
     llm = get_llm()
-
-    try:
-        presentation_llm = llm.with_structured_output(
-            Presentation,
-            method="json_schema"
-        )
-    except Exception:
-        presentation_llm = llm.with_structured_output(Presentation)
 
     prompt = f"""
     You are the Presentation Specialist Agent for PRISM.
@@ -175,7 +164,7 @@ def presentation_node(state: PRISMState) -> dict:
     8. Focus on important information rather than repeating facts.
     9. Follow the requested tone.
     10. Do not include speaker notes.
-    11. Return the presentation as the requested structured format.
+    11. Return the presentation as valid JSON matching the Presentation schema.
 
     Suggested structure when enough information is available:
     - Introduction / Title
@@ -195,7 +184,7 @@ def presentation_node(state: PRISMState) -> dict:
     {fact_graph}
     """
 
-    presentation = presentation_llm.invoke(prompt)
+    presentation = invoke_structured_llm(llm, Presentation, prompt)
 
     if isinstance(presentation, dict):
         pres_dict = presentation

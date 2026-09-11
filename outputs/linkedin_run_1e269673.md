@@ -1,0 +1,15 @@
+# PRISM Generated LinkedIn Post
+
+🚀 **CardiaGuard Phase III Trial Highlights** 🚀  
+
+We are proud to announce that the Phase III study of CardiaGuard enrolled **6,400 patients** across **48 clinical research sites** in North America and Western Europe over a **24‑month** period.  
+
+Key outcomes:  
+- **42 % relative reduction** in major cardiovascular events (p < 0.001).  
+- Adverse event rates were **3.1 %** for CardiaGuard versus **2.9 %** for placebo—comparable safety profiles.  
+
+The clinical advisory board recommends a **priority FDA filing by Q1 2027**.  
+
+These results underscore CardiaGuard’s potential to transform cardiovascular care.  
+
+#CardiovascularHealth #ClinicalTrials #FDAApproval #PharmaInnovation #CardioCare #HealthTech #ClinicalResearch #CardiaGuard

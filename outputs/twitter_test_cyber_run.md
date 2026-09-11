@@ -1,0 +1,3 @@
+# PRISM Generated Twitter/X Post
+
+🚨 Cyber attacks—from phishing to ransomware—can cause data loss, financial damage, and privacy problems. Protect yourself with strong passwords, regular software updates, multi‑factor authentication, and avoid suspicious links. Stay alert. #CyberSecurity #InfoSec

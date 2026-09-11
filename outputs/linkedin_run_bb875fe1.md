@@ -1,0 +1,13 @@
+# PRISM Generated LinkedIn Post
+
+🔐 **Hashing & Memory Representation: Key Concepts for Data Security Professionals**
+
+- **Hashing** is the process of scrambling a piece of information or data, turning it into a fixed‑size string that is difficult to reverse.  
+- In a **big‑endian** system, the most significant byte (MSB) is stored at the lowest memory address.  
+- For example, a 32‑bit integer `0x12345678` is laid out in memory as:  
+  - **Address**: 00 01 02 03  
+  - **Data**: 12 34 56 78  
+
+Understanding these fundamentals helps ensure secure data handling and accurate system design.  
+
+#DataSecurity #Hashing #BigEndian #TechInsights #Cybersecurity #SoftwareEngineering
