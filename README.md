@@ -167,3 +167,5 @@ Prism/
 ├── test_prism.py                   # [Comprehensive test suite]
 └── README.md
 ```
+
+Author: Khush Trivedi
